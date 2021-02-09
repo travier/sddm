@@ -7,9 +7,25 @@ StartLimitIntervalSec=30
 StartLimitBurst=2
 
 [Service]
-ExecStart=@CMAKE_INSTALL_FULL_BINDIR@/sddm
+ExecStart=!@CMAKE_INSTALL_FULL_BINDIR@/sddm
 Restart=always
+
+User=sddm
+StateDirectory=sddm
+
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+ProtectClock=yes
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectSystem=full
+RestrictNamespaces=yes
+RestrictRealtime=yes
+SystemCallArchitectures=native
+SystemCallErrorNumber=EPERM
+SystemCallFilter=@system-service
 
 [Install]
 Alias=display-manager.service
-
